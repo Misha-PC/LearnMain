@@ -59,10 +59,10 @@ def item(request: HttpRequest, item_id: int) -> HttpResponse:
     return HttpResponse(f"""
             <h1>Товар не найден</h1>
             Доступные товары:
-            <ul>
+            <ol>
                 {item_links}
-            </ul>
-        """)
+            </ol>
+        """, status=404)
 
 
 
