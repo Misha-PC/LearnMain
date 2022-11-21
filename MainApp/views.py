@@ -5,34 +5,21 @@ from django.http.response import HttpResponse
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    return HttpResponse("Index page")
+    template = 'index.html'
+    return render(request, template, {})
 
 def about(request: HttpRequest) -> HttpResponse:
-    _about = {
+    content = {
         "f_name": "Иван",
         "s_name": "Петрович",
         "l_name": "Иванов",
         "email": "vasya@mail.ru",
         "phone": "8-923-600-01-02",
     }
+    template = 'about.html'
+    return render(request, template, content)
 
-    return HttpResponse(f"""
-    <!DOCTYPE html>
-    <head>
-        <title>About</title>
-    </head>
-        <body>
-            <h1>О авторе</h1>
-            <table>
-                <tr><td>Имя:</td><td>{_about['f_name']}</td></tr>
-                <tr><td>Фамилия:</td><td>{_about['s_name']}</td></tr>
-                <tr><td>Отчество:</td><td>{_about['l_name']}</td></tr>
-                <tr><td>Почта:</td><td>{_about['email']}</td></tr>
-                <tr><td>Телефон:</td><td>{_about['phone']}</td></tr>
-            </table>
-        </body>
-    </html>
-    """)
+
 
 
 def item(request: HttpRequest, item_id: int) -> HttpResponse:
